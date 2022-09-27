@@ -11,6 +11,7 @@ flaskApp.config.from_object(BaseConfig)
 cache = Cache(flaskApp)
 
 
+@cache.cached(timeout=30, query_string=True)
 def index(since, until=None):
     return Consumer().expose(since, until)
 
