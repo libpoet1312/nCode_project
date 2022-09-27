@@ -1,8 +1,15 @@
 import connexion
+from flask_caching import Cache
 
 from app.consumer.consumer import Consumer
+from app.config import BaseConfig
 
 app = connexion.FlaskApp(__name__, specification_dir='')
+
+flaskApp = app.app
+flaskApp.config.from_object(BaseConfig)
+cache = Cache(flaskApp)
+
 
 def index(since, until=None):
     return Consumer().expose(since, until)
@@ -15,4 +22,4 @@ if __name__ == '__main__':
         options={"swagger_ui": True, "serve_spec": True},
         validate_responses=True
     )
-    app.run(host='127.0.0.1', debug=True)
+    app.run(debug=True)

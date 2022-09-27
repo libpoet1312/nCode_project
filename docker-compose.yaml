@@ -7,9 +7,9 @@ services:
     env_file:
       - .env
     ports:
-      - '5000:5000'
+      - '127.0.0.1:5000:5000'
   redis:
     image: redis
     container_name: redis
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
