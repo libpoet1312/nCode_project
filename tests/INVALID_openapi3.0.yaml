@@ -1,0 +1,31 @@
+openapi: "3.0.0"
+
+info:
+  title: StackExchange API Consumer
+  description: StackExchange API Consumer for nCode test project
+  version: "0.1.0"
+  contact:
+    email: npappas@uth.gr
+    name: Nikos Pappas
+
+servers:
+  - url: http://localhost:5000/v1/api
+paths:
+  /stackstats:
+    get:
+      summary: Get
+      description: Get
+      operationId: main.index
+      parameters:
+        - name: since
+          in: query
+          schema:
+            type: string
+          description: Since
+          required: true
+        - name: until
+          in: query
+          schema:
+            type: string
+          description: Until
+          required: false
