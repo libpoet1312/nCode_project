@@ -43,6 +43,18 @@ and provides an endpoint in which some calculations/statistics are provided.
     | -- gunicorn_conf.py : Gunicorn conf file, for production use
 
 ## Development
+Firstly we need to copy .env_back to .env
+```shell
+cp .env_back .env
+```
+
+### 1. With docker
+
+```shell
+docker-compose -f docker-compose.yaml up -d --build
+```
+
+### 2. Without docker
 To run for development (without cache support) run:
 ```shell
 python main.py
@@ -52,11 +64,11 @@ python main.py
 
 For presentation, we use docker and docker-compose.
 
-1. 
+0.
     ```shell
     cp .env_back .env
     ```
-2. 
+1.
     ```shell
     docker-compose -f docker-compose.yaml up -d --build
     ```
