@@ -12,6 +12,8 @@ from app.consumer.helpers import checkFormatAndGetTimeStamp
 ANSWERS_BASE_URL = "https://api.stackexchange.com/2.3/answers"
 COMMENTS_BASE_URL = 'https://api.stackexchange.com/2.3/answers/'
 
+logger = logging.getLogger(__name__)
+
 
 class Consumer:
     def _call_answers_api(self, query_params, all_results):
@@ -22,7 +24,7 @@ class Consumer:
         while has_more:
             response = requests.get(api_url)
             if response.status_code != 200:
-                print(response.json())
+                logger.error(response.json())
                 raise ProblemException(detail='StackExchange not responding')
 
             response = response.json()
@@ -63,7 +65,7 @@ class Consumer:
         api_url = COMMENTS_BASE_URL + _id + '/comments' + '?' + urlencode(query_params)
         response = requests.get(api_url)
         if response.status_code != 200:
-            print(response.json())
+            logger.error(response.json())
             raise ProblemException(detail='StackExchange not responding')
 
         response = response.json()
