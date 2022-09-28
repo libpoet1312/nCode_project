@@ -12,6 +12,10 @@ This is a project aiming to show my abilities to develop a consumer application 
 This is an api written in Python with Flask framework that consumes StackExchange API
 and provides an endpoint in which some calculations/statistics are provided.
 
+Endpoints:
+- api/v1/stackstats : The requested endpoint for our calculations,
+- api/v1/ui : A swagger UI to represent our API graphically.
+
 ### Based on
 
 - Python: 3.6.15
@@ -73,4 +77,13 @@ For presentation, we use docker and docker-compose.
     docker-compose -f docker-compose.yaml up -d --build
     ```
 
+## Testing
+
+We use pytest for testing our code/api.
+We have included 5 basic tests in order to do so.
+
+Run:
+```shell
+python -m pytest
+```
 
