@@ -25,22 +25,40 @@ and provides an endpoint in which some calculations/statistics are provided.
 
 ## Folder structure
 
-    | app/
-    |-- consumer/
-    |---- consumer.py
-    |---- helpers.py
-    |-- config.py
-    | docker-compose.yml
-    | .env
-    | Dockerfile
-    | main.py
-    | nCode_openapi3.0.yaml
-    | requirements.txt
+    | nCodeProject/ : Root application folder
+    | -- app/ : Entrypoint application folder
+    | ---- main.py : Entrypoint
+    | ---- config.py : Store config variables
+    | ---- nCode_openapi3.0.yaml : An open3.0 spec file that describes the API
+    | ---- consumer/ : A module that makes all calculations and API requests to StackExchange API
+    | ------ consumer.py
+    | ------ helpers.py
+    | -- docker-compose.yml : for production use
+    | -- docker-compose-dev.yml : for dev use
+    | -- .env
+    | -- .env_back
+    | -- Dockerfile.dev
+    | -- Dockerfile
+    | -- requirements.txt : Python libraries required
+    | -- gunicorn_conf.py : Gunicorn conf file, for production use
 
-## Presentation
+## Development
+To run for development (without cache support) run:
+```shell
+python main.py
+```
+
+## Deployment
 
 For presentation, we use docker and docker-compose.
 
-``` 
-docker-compose -f docker-compose.yaml up -d --build
-```
+1. 
+    ```shell
+    cp .env_back .env
+    ```
+2. 
+    ```shell
+    docker-compose -f docker-compose.yaml up -d --build
+    ```
+
+

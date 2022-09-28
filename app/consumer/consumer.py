@@ -7,7 +7,7 @@ from collections import Counter
 
 from connexion.exceptions import ProblemException
 
-from app.consumer.helpers import checkFormatAndGetTimeStamp
+from .helpers import checkFormatAndGetTimeStamp
 
 ANSWERS_BASE_URL = "https://api.stackexchange.com/2.3/answers"
 COMMENTS_BASE_URL = 'https://api.stackexchange.com/2.3/answers/'

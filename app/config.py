@@ -8,6 +8,7 @@ load_dotenv(dotenv_path)
 
 
 class BaseConfig(object):
+    DEBUG = os.environ['DEBUG']
     CACHE_TYPE = os.environ['CACHE_TYPE']
     CACHE_REDIS_HOST = os.environ['CACHE_REDIS_HOST']
     CACHE_REDIS_PORT = os.environ['CACHE_REDIS_PORT']

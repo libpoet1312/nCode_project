@@ -1,10 +1,13 @@
 FROM python:3.6-alpine
 
-WORKDIR /app
+COPY ./requirements.txt requirements.txt
 
-COPY requirements.txt /app
+WORKDIR .
 
-RUN pip3 install -r requirements.txt --no-cache-dir
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY . .
 
+ENV PYTHONPATH=/app
+
+CMD ["gunicorn", "--conf", "gunicorn_conf.py", "--bind", "0.0.0.0:5000", "app.main:app"]

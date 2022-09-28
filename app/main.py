@@ -1,9 +1,9 @@
 import connexion
 import logging
 from flask_caching import Cache
-from app.config import BaseConfig
+from config import BaseConfig
 
-from app.consumer.consumer import Consumer
+from consumer.consumer import Consumer
 
 logging.basicConfig(level=logging.INFO)
 
@@ -26,4 +26,4 @@ if __name__ == '__main__':
         options={"swagger_ui": True, "serve_spec": True},
     )
     flaskApp.logger.info("API running")
-    app.run(debug=True)
+    app.run(debug=BaseConfig.DEBUG)
