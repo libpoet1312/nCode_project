@@ -1,8 +1,11 @@
 import connexion
+import logging
 from flask_caching import Cache
+from app.config import BaseConfig
 
 from app.consumer.consumer import Consumer
-from app.config import BaseConfig
+
+logging.basicConfig(level=logging.INFO)
 
 app = connexion.FlaskApp(__name__, specification_dir='')
 
@@ -21,6 +24,6 @@ if __name__ == '__main__':
         'nCode_openapi3.0.yaml',
         base_path='/api/v1',
         options={"swagger_ui": True, "serve_spec": True},
-        validate_responses=True
     )
+    flaskApp.logger.info("API running")
     app.run(debug=True)
