@@ -66,14 +66,18 @@ python main.py
 
 For presentation, we use docker and docker-compose.
 
-0.
+0. Copy _.env_ from _.env_back_
     ```shell
     cp .env_back .env
     ```
-1.
+1. Build docker containers
     ```shell
     docker-compose -f docker-compose.yaml up -d --build
     ```
+2. Example:
+   ```shell
+   curl --request --url http://127.0.0.1:5000/api/v1/stackstats?since=2020-10-02%2010:00:00&until=2020-10-02%2011:00:00
+   ```
 
 ## Testing
 
