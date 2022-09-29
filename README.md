@@ -14,7 +14,6 @@ and provides an endpoint in which some calculations/statistics are provided.
 
 Endpoints:
 - api/v1/stackstats : The requested endpoint for our calculations,
-- api/v1/ui : A swagger UI to represent our API graphically.
 
 ### Based on
 
@@ -23,7 +22,7 @@ Endpoints:
 
 ### 3rd party Python Libraries used
 
-- [connection](https://connexion.readthedocs.io/en/latest/)
+- [Flask-RESTX](https://flask-restx.readthedocs.io)
 - Flask-Caching
 - Redis
 
@@ -33,7 +32,6 @@ Endpoints:
     | -- app/ : Entrypoint application folder
     | ---- main.py : Entrypoint
     | ---- config.py : Store config variables
-    | ---- nCode_openapi3.0.yaml : An open3.0 spec file that describes the API
     | ---- consumer/ : A module that makes all calculations and API requests to StackExchange API
     | ------ consumer.py
     | ------ helpers.py

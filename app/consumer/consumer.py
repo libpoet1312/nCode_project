@@ -5,8 +5,7 @@ import requests
 from urllib.parse import urlencode
 from collections import Counter
 
-from connexion.exceptions import ProblemException
-
+from werkzeug.exceptions import BadGateway
 from .helpers import checkFormatAndGetTimeStamp
 
 ANSWERS_BASE_URL = "https://api.stackexchange.com/2.3/answers"
@@ -25,7 +24,7 @@ class Consumer:
             response = requests.get(api_url)
             if response.status_code != 200:
                 logger.error(response.json())
-                raise ProblemException(detail='StackExchange not responding')
+                raise BadGateway()
 
             response = response.json()
             items += response['items']
@@ -66,12 +65,14 @@ class Consumer:
         response = requests.get(api_url)
         if response.status_code != 200:
             logger.error(response.json())
-            raise ProblemException(detail='StackExchange not responding')
+            raise BadGateway(description=str(response.json()))
 
         response = response.json()
         return sorted(response['items'], key=lambda d: d['score'], reverse=True)
 
-    def expose(self, since, until=None, get_all_results_from_pagination=False):
+    def expose(self, args, get_all_results_from_pagination=False):
+        since = args['since']
+        until = args['until']
         since_timestamp = checkFormatAndGetTimeStamp(since)
         until_timestamp = checkFormatAndGetTimeStamp(until)
 

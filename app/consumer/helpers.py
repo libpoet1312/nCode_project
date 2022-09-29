@@ -1,8 +1,7 @@
 from datetime import datetime
 import calendar
 
-from connexion.exceptions import BadRequestProblem, ProblemException
-
+from werkzeug.exceptions import BadRequest
 
 def checkFormatAndGetTimeStamp(time_date_str):
     """
@@ -18,6 +17,6 @@ def checkFormatAndGetTimeStamp(time_date_str):
     try:
         datetime_obj = datetime.strptime(time_date_str, '%Y-%m-%d %H:%M:%S')
     except ValueError as error:
-        raise BadRequestProblem(detail=str(error))
+        raise BadRequest(description=str(error))
 
     return calendar.timegm(datetime_obj.utctimetuple())
