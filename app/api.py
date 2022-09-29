@@ -5,7 +5,7 @@ import logging
 from flask_caching import Cache
 from config import BaseConfig
 from flask import Flask
-from flask_restx import Api, Resource, reqparse
+from flask_restx import Api, Resource, reqparse, fields
 
 from consumer.consumer import Consumer
 
@@ -21,6 +21,13 @@ api = Api(app)
 
 @cache.cached(timeout=30, query_string=True)
 @api.route('/api/v1/stackstats')
+@api.doc(
+    params={
+        'since': 'Timestamp',
+        'until': 'Timestamp'
+    },
+    responses={200: 'OK', 400: 'Bad Request', '404': 'Not Found'}
+)
 class StackExchange(Resource):
     def get(self):
         parser = reqparse.RequestParser()
@@ -33,4 +40,4 @@ class StackExchange(Resource):
 
 if __name__ == '__main__':
     app.logger.info("API running")
-    app.run(debug=BaseConfig.DEBUG)
+    app.run(debug=BaseConfig.DEBUG, host='0.0.0.0', port=5000)
